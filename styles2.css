@@ -1,0 +1,748 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    align-items: center;
+    text-align: center;
+  }
+  /* Background */
+.background {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-image: url("imagenes/fondo.jpg");
+  background-position: center;
+  filter: blur(5px);
+  opacity: 0.15;
+  z-index: 1;
+}
+ /* Preloader */
+#preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: #025e70 url("imagenes/preloader.svg") no-repeat center center;
+}
+  header {
+    background-color: #003366;
+    padding: 44px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+   z-index: 2;
+  }
+  .logo-container {
+    width: 88px; /* Ancho de la imagen */
+    position: absolute;
+    top: 0; /* Ajusta la posición hacia abajo para que se vea más grande */
+    left: 20px; /* Ajusta la posición hacia la izquierda para centrarlo más */
+    z-index: 3;
+}
+
+.img {
+    max-width: 100%; /* Cambia el tamaño de la imagen al 100% del contenedor */
+    display: block; /* Cambia la visualización de la imagen a bloque para que ocupe todo el ancho del contenedor */
+}
+
+  #present {
+    margin-top: 110px; /* Ajusta según el tamaño de tu encabezado */
+}
+
+#footer {
+  margin-top: 20px; /* Ajusta según el tamaño de tu encabezado */
+}
+  .modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Fondo azul con transparencia */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Asegurar que esté encima de todo */
+    display: none; /* Inicialmente oculto */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    animation: animate__zoomIn 5s; /* Animación para mostrar el modal */
+    top: 0;
+    right: 0;
+
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.countdown {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.countdown-item {
+    margin: 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.countdown-number {
+    font-weight: bold;
+    animation: animate__flipInX 1s ease;
+    font-size: 5rem;
+    color: #005588;
+    
+}
+/* Estilo para los puntos entre los números */
+.countdown-number::after {
+  content: ":::"; /* Agrega tres puntos después de cada número */
+  position: absolute;
+  left: calc(22% + 0.05em); /* Coloca el punto justo después del número */
+  top: 10;
+  letter-spacing: 2.3em; /* Ajusta el espacio entre los puntos */
+}
+
+
+/* Animación para mostrar el modal */
+@keyframes animate__zoomIn {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Estilos anteriores... */
+.modal-close {
+  position: absolute;
+  top: 20px; /* Ajusta la posición hacia abajo para que se vea más grande */
+  right: 50px; /* Ajusta la posición hacia la izquierda para centrarlo más */
+  cursor: pointer;
+  font-size: 50px; /* Ajusta el tamaño del botón */
+  color: #ffffff;
+}
+.modal-close:hover {
+  color: #f00; /* Cambia el color al pasar el mouse sobre el botón */
+}
+#modal-content {
+  transition: all 0.5s ease; /* Agregamos una transición para el cambio de tamaño */
+}
+
+.modal-closed #modal-content {
+  transform: scale(0.41); /* Se hace más pequeño cuando está cerrado */
+  transform-origin: top right; /* Alinea el cambio de tamaño al borde superior derecho */
+  position: fixed;
+  top: 0px; /* Ajusta la posición hacia abajo para que se vea más grande */
+  right: 0px; /* Ajusta la posición hacia la izquierda para centrarlo más */
+  background-color: transparent; /* Elimina el fondo azul con transparencia cuando el modal está cerrado */
+}
+.modal-closed #modal-content,
+.modal-closed #modal-container {
+  transition: transform 0.5s ease, opacity 0.5s ease; /* Agregamos una transición para el cambio de tamaño y opacidad */
+}
+.modal-closed #modal-container {
+  opacity: 0; /* Reduce la opacidad cuando está cerrado */
+}
+.modal-container.modal-closed {
+  background-color: transparent; /* Elimina el fondo azul con transparencia cuando el modal está cerrado */
+}
+.modal-closed .countdown-number {
+  color: rgb(255, 255, 255);
+}
+.modal-closed .countdown {
+  color: rgb(255, 255, 255);
+} 
+
+.date-text {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  animation: animate__pulse 1s; /* Animación con duración de 1 segundo */
+  animation-iteration-count: 10000000000; /* Que la animación se ejecute */
+  animation-delay: 7s; /* Espera 30 segundos antes de comenzar la animación */
+  z-index: 1;
+}
+/* Define la animación */
+@keyframes changeBorderColorPresent {
+  0%, 100%{
+    border-color: #8a8af7; /* Define el color inicial y final del borde */
+  }
+  50% {
+    border-color: #0191fe; /* Define el color intermedio del borde */
+  }
+}
+@keyframes changeBorderColorPadrinos {
+  0%, 100% {
+    border-color: #01fef1; /* Define el color inicial y final del borde */
+  }
+  50% {
+    border-color: #006eff; /* Define el color intermedio del borde */
+  }
+}
+@keyframes changeBorderColorFecha {
+  0% {
+    border-color: #0191fe; /* Define el color inicial del borde */
+  }
+  50% {
+    border-color: #01fef6;; /* Define el color intermedio del borde */
+  }
+  100% {
+    border-color: #5f60cb; /* Define el color final del borde */
+  }
+}
+
+@keyframes changeBorderColorCeremonyInfo {
+  0%, 100% {
+    border-color: #0191fe; /* Define el color inicial y final del borde */
+  }
+  50% {
+    border-color: #8a8af7; /* Define el color intermedio del borde */
+  }
+}
+
+@keyframes changeBorderColorEventDetails {
+  0% {
+    border-color: #5f60cb; /* Define el color inicial del borde */
+  }
+  50% {
+    border-color: #01fef6; /* Define el color intermedio del borde */
+  }
+  100% {
+    border-color: #0191fe; /* Define el color final del borde */
+  }
+}
+
+/* Aplica la animación al borde de la sección "event-details" */
+#padrinos {
+  border: 4px solid rgba(77, 75, 75, 0); /* Define el borde inicial */
+  animation: changeBorderColorPadrinos 3s infinite; /* Aplica la animación con una duración de 5 segundos y que se repita infinitamente */
+  animation-delay: 7s; /* Agrega un retraso de 10 segundos antes de que comience la animación */
+}
+
+/* Aplica la animación al borde de la sección "present" */
+#present {
+  border: 4px solid rgba(77, 75, 75, 0); /* Define el borde inicial */
+  animation: changeBorderColorPresent 5s infinite; /* Aplica la animación con una duración de 5 segundos y que se repita infinitamente */
+  animation-delay: 7s; /* Agrega un retraso de 10 segundos antes de que comience la animación */
+}
+
+/* Aplica la animación al borde de la sección "fecha" */
+#fecha {
+  border: 4px solid rgba(77, 75, 75, 0); /* Define el borde inicial */
+  animation: changeBorderColorFecha 5s infinite; /* Aplica la animación con una duración de 5 segundos y que se repita infinitamente */
+  animation-delay: 7s; /* Agrega un retraso de 10 segundos antes de que comience la animación */
+}
+
+/* Aplica la animación al borde de la sección "ceremony-info" */
+#ceremony-info {
+  border: 4px solid rgba(77, 75, 75, 0); /* Define el borde inicial */
+  animation: changeBorderColorCeremonyInfo 5s infinite; /* Aplica la animación con una duración de 5 segundos y que se repita infinitamente */
+  animation-delay: 7s; /* Agrega un retraso de 10 segundos antes de que comience la animación */
+}
+
+/* Aplica la animación al borde de la sección "event-details" */
+#event-details {
+  border: 4px solid rgba(77, 75, 75, 0); /* Define el borde inicial */
+  animation: changeBorderColorEventDetails 5s infinite; /* Aplica la animación con una duración de 5 segundos y que se repita infinitamente */
+  animation-delay: 7s; /* Agrega un retraso de 10 segundos antes de que comience la animación */
+}
+
+
+
+h1 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.padrinos {
+  display: flex;
+  justify-content: center;
+}
+
+.padrino {
+  margin: 0 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+  animation: levantar 3s infinite alternate, cambio-color 3s infinite alternate;
+}
+
+.padrino img {
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.padrino p {
+  margin: 0;
+  font-size: 18px;
+  color: #000000;
+}
+
+@keyframes levantar {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
+}
+
+@keyframes cambio-color {
+  0% {
+      background-color: #fff;
+      color: #4000ff;
+  }
+  50% {
+      background-color: #0b94f6;
+      color: #ffffff;
+  }
+  100% {
+      background-color: #fff;
+      color: #4000ff;
+  }
+}
+
+  
+  section {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    z-index: -2;
+  }
+  
+  h2 {
+    color: #003366;
+    font-size: 2.5em;
+    margin-top: 0;
+  }
+  p{
+    font-size: 1em;
+  }
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  #footer {
+    background:#003366;
+    padding: 20px 0;
+    color: #fff;
+    z-index: 999;
+    opacity: 100%;
+    z-index: 4;
+    position: relative;
+}
+
+  
+  #footer .copyright {
+    text-align: center;
+  }
+  
+  #footer .credits {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #ccc;
+  }
+.name {
+  color: #ffffff;
+}
+
+
+
+/* Media Queries para hacer la página responsive */
+@media only screen and (max-width: 768px) {
+  header {
+      padding: 44px;
+  }
+
+  .modal-close {
+      font-size: 50px;
+      top: 20px;
+      right: 20px;
+  }
+
+  .countdown {
+      font-size: 1.3rem;
+  }
+
+  .countdown-item {
+      margin: 0 19px;
+      font-size: 1.3rem;
+  }
+
+  .countdown-number {
+      font-size: 2.3rem;
+  }
+  .modal-closed #modal-content {
+    font-size: 20rem;
+    transform: scale(0.7); /* Se hace más pequeño cuando está cerrado */
+  }
+  .date-text {
+    font-size: 2rem; /* Reducir el tamaño del texto */
+    animation-delay: 5s; /* Reducir el retraso de la animación */
+  }
+
+  h2 {
+    font-size: 2em; /* Reducir el tamaño del título */
+  }
+
+  p {
+    font-size: 1em; /* Reducir el tamaño del texto */
+  }
+  gmpx-store-locator {
+    /* Ajustes de tamaño para pantallas más pequeñas */
+    font-size: 0.98em;
+  }
+  .logo-container {
+    left: 15px; /* Ajusta la posición hacia la izquierda para centrarlo más */
+  }
+  .countdown-number::after {
+    left: calc(21% + 0.05em); /* Coloca el punto justo después del número */
+    letter-spacing: 2.49em; /* Ajusta el espacio entre los puntos */
+  }
+  .padrino img {
+    width: 100px; /* Reducimos el ancho de la imagen para pantallas más pequeñas */
+    margin-bottom: 5px; /* Reducimos el margen inferior */
+}
+
+.padrino p {
+    font-size: 14px; /* Reducimos el tamaño de la fuente para pantallas más pequeñas */
+}
+#footer {
+  padding: 20px 0;
+}
+.modal-close {
+  top: 15px; /* Reduce la distancia hacia abajo en pantallas más pequeñas */
+  right: 30px; /* Reduce la distancia hacia la izquierda en pantallas más pequeñas */
+  font-size: 40px; /* Reduce el tamaño del botón en pantallas más pequeñas */
+}
+}
+
+
+
+@media only screen and (max-width: 480px) {
+  header {
+    padding: 44px;
+}
+  .countdown {
+      font-size: 1rem;
+  }
+
+  .countdown-item {
+      margin: 0 23px;
+      font-size: 1rem;
+  }
+
+  .countdown-number {
+      font-size: 2rem;
+  }
+  .modal-closed #modal-content {
+    font-size: 2rem;
+    transform: scale(0.8);
+  }
+  .date-text {
+    font-size: 2rem; /* Reducir el tamaño del texto */
+    animation-delay: 5s; /* Reducir el retraso de la animación */
+  }
+
+  h2 {
+    font-size: 1.3em; /* Reducir el tamaño del título */
+  }
+
+  p {
+    font-size: 0.89em; /* Reducir el tamaño del texto */
+  }
+  gmpx-store-locator {
+    /* Ajustes de tamaño para pantallas más pequeñas */
+    font-size: 0.88em;
+  }
+  .logo-container {
+    left: 20px; /* Ajusta la posición hacia la izquierda para centrarlo más */
+  }
+  .countdown-number::after {
+    left: calc(23% + 0.05em); /* Coloca el punto justo después del número */
+    letter-spacing: 2.7em; /* Ajusta el espacio entre los puntos */
+  }
+  .padrino img {
+    width: 120px; /* Reducimos el ancho de la imagen para pantallas más pequeñas */
+    margin-bottom: 10px; /* Reducimos el margen inferior */
+}
+
+.padrino p {
+    font-size: 12px; /* Reducimos el tamaño de la fuente para pantallas más pequeñas */
+}
+#footer {
+  padding: 15px 0;
+}
+#footer .credits {
+  font-size: 11px;
+}
+.copyright {
+  font-size: 12px;
+}
+.modal-close {
+  top: 15px; /* Reduce la distancia hacia abajo en pantallas más pequeñas */
+  right: 25px; /* Reduce la distancia hacia la izquierda en pantallas más pequeñas */
+  font-size: 35px; /* Reduce el tamaño del botón en pantallas más pequeñas */
+}
+}
+
+
+
+@media only screen and (max-width: 418px) {
+  header {
+    padding: 39px;
+}
+  .countdown {
+      font-size: 1rem;
+  }
+
+  .countdown-item {
+      margin: 0 16px;
+      font-size: 1rem;
+  }
+
+  .countdown-number {
+      font-size: 2rem;
+  }
+  .modal-closed #modal-content {
+    font-size: 1.5rem;
+    transform: scale(0.7);
+  }
+  .date-text {
+    font-size: 1.7rem; /* Reducir el tamaño del texto */
+    animation-delay: 5s; /* Reducir el retraso de la animación */
+  }
+
+  h2 {
+    font-size: 1.2em; /* Reducir el tamaño del título */
+  }
+
+  p {
+    font-size: 0.85em; /* Reducir el tamaño del texto */
+  }
+  gmpx-store-locator {
+    /* Ajustes de tamaño para pantallas más pequeñas */
+    font-size: 0.85em;
+  }
+  .logo-container {
+    left: 25px; /* Ajusta la posición hacia la izquierda para centrarlo más */
+    width: 70px;
+    margin-top: 3px;
+  }
+  .countdown-number::after {
+    left: calc(22.5% + 0.05em); /* Coloca el punto justo después del número */
+    letter-spacing: 2.3em; /* Ajusta el espacio entre los puntos */
+  }
+  .padrino img {
+    width: 80px; /* Reducimos el ancho de la imagen para pantallas más pequeñas */
+    margin-bottom: 8px; /* Reducimos el margen inferior */
+}
+
+.padrino p {
+    font-size: 0.65em; /* Reducimos el tamaño de la fuente para pantallas más pequeñas */
+}
+#footer .credits {
+  font-size: 11px;
+}
+.copyright {
+  font-size: 12px;
+}
+}
+
+@media only screen and (max-width: 340px) {
+  header {
+    padding: 34px;
+}
+  .countdown {
+      font-size: 1rem;
+  }
+
+  .countdown-item {
+      margin: 0 12px;
+      font-size: 1rem;
+  }
+
+  .countdown-number {
+      font-size: 1.5em;
+  }
+  .modal-closed #modal-content {
+    font-size: 1.5rem;
+    transform: scale(0.7);
+  }
+  .countdown-label{
+    font-size: 0.8em;
+  }
+  .date-text {
+    font-size: 1.3rem; /* Reducir el tamaño del texto */
+    animation-delay: 5s; /* Reducir el retraso de la animación */
+  }
+
+  h2 {
+    font-size: 1em; /* Reducir el tamaño del título */
+  }
+
+  p {
+    font-size: 0.7em; /* Reducir el tamaño del texto */
+  }
+  gmpx-store-locator {
+    /* Ajustes de tamaño para pantallas más pequeñas */
+    font-size: 0.7em;
+  }
+  .logo-container {
+    left: 25px; /* Ajusta la posición hacia la izquierda para centrarlo más */
+    width: 50px;
+    margin-top: 8px;
+  }
+  .countdown-number::after {
+    left: calc(23% + 0.05em); /* Coloca el punto justo después del número */
+    letter-spacing: 2.35em; /* Ajusta el espacio entre los puntos */
+    font-size: 1em;
+  }
+  .padrino img {
+    width: 55px; /* Reducimos el ancho de la imagen para pantallas más pequeñas */
+    margin-bottom: 6px; /* Reducimos el margen inferior */
+}
+
+.padrino p {
+    font-size: 0.6em; /* Reducimos el tamaño de la fuente para pantallas más pequeñas */
+}
+#footer {
+  padding: 10px 0;
+}
+#footer .credits {
+  font-size: 8px;
+}
+.copyright {
+  font-size: 10px;
+}
+.modal-close {
+  top: 20px; /* Reduce la distancia hacia abajo en pantallas más pequeñas */
+  right: 25px; /* Reduce la distancia hacia la izquierda en pantallas más pequeñas */
+  font-size: 20px; /* Reduce el tamaño del botón en pantallas más pequeñas */
+}
+@keyframes levantar {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-10px);
+  }
+}
+}
+
+@media only screen and (max-width: 286px) {
+  header {
+    padding: 29px;
+}
+  .countdown {
+      font-size: 1rem;
+  }
+
+  .countdown-item {
+      margin: 0 10px;
+      font-size: 1rem;
+  }
+
+  .countdown-number {
+      font-size: 1.1em;
+  }
+  .modal-closed #modal-content {
+    font-size: 1.4rem;
+    transform: scale(0.7);
+  }
+  .countdown-label{
+    font-size: 0.6em;
+  }
+  .date-text {
+    font-size: 0.9rem; /* Reducir el tamaño del texto */
+    animation-delay: 5s; /* Reducir el retraso de la animación */
+  }
+
+  h2 {
+    font-size: 0.8em; /* Reducir el tamaño del título */
+  }
+
+  p {
+    font-size: 0.5em; /* Reducir el tamaño del texto */
+  }
+  gmpx-store-locator {
+    /* Ajustes de tamaño para pantallas más pequeñas */
+    font-size: 0.5em;
+  }
+  .logo-container {
+    left: 25px; /* Ajusta la posición hacia la izquierda para centrarlo más */
+    width: 35px;
+    margin-top: 10px;
+  }
+  .countdown-number::after {
+    left: calc(24% + 0.05em); /* Coloca el punto justo después del número */
+    letter-spacing: 1.95em; /* Ajusta el espacio entre los puntos */
+    font-size: 1em;
+  }
+  .padrino img {
+    width: 30px; /* Reducimos el ancho de la imagen para pantallas más pequeñas */
+    margin-bottom: 5px; /* Reducimos el margen inferior */
+}
+
+.padrino p {
+    font-size: 0.4em; /* Reducimos el tamaño de la fuente para pantallas más pequeñas */
+}
+#footer {
+  padding: 10px 0;
+}
+#footer .credits {
+  font-size: 6px;
+}
+.copyright {
+  font-size: 8px;
+}
+.modal-close {
+  top: 20px; /* Reduce la distancia hacia abajo en pantallas más pequeñas */
+  right: 25px; /* Reduce la distancia hacia la izquierda en pantallas más pequeñas */
+  font-size: 20px; /* Reduce el tamaño del botón en pantallas más pequeñas */
+}
+@keyframes levantar {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-10px);
+  }
+}
+}
+
+@media (hover: none) {
+  /* Estilos para dispositivos móviles sin soporte para hover */
+  .modal-close:active {
+      color: #f00; /* Cambia el color al tocar el botón en dispositivos táctiles */
+  }
+}
