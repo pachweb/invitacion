@@ -62,14 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Agregar la clase con la animación después de 20 segundos
   setTimeout(function() {
       boton.classList.add("animate__heartBeat");
-      boton.style.animationIterationCount = "2"; // Repetir la animación 2 veces
+      boton.style.animationIterationCount = "3"; // Repetir la animación 3 veces
 
       // Agregar un tiempo de espera entre cada repetición (segundos)
       for (var i = 1; i <= 500; i++) {
           setTimeout(function() {
-              boton.style.animationIterationCount = "4"; // Repetir la animación 4 veces
+              boton.style.animationIterationCount = "10000000000"; // Repetir la animación
               boton.style.animationDelay = "10s"; // Establecer el tiempo de espera entre repeticiones
-          }, 10000 * i); // Esperar 10 segundos multiplicados por el número de repetición
+          }, 20000 * i); // Esperar los segundos multiplicados por el número de repetición
       }
   }, 20000); // 20 segundos
 });
